@@ -3,40 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>二手遊戲片價格比較</title>
+    <title>二手遊戲片價格比較 | 找到最划算的遊戲價格</title>
+    <meta name="description" content="比較旋轉拍賣、蝦皮購物、露天拍賣等平台的二手遊戲價格，找到最優惠的Nintendo Switch、PS5、PS4、Xbox遊戲。">
+    <meta name="keywords" content="二手遊戲,遊戲價格比較,Nintendo Switch,PS5,PS4,Xbox,旋轉拍賣,蝦皮購物,露天拍賣">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="#">
+    <meta property="og:title" content="二手遊戲片價格比較">
+    <meta property="og:description" content="一站式比較多個平台的二手遊戲價格">
+    <meta property="og:image" content="#">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="#">
+    <meta property="twitter:title" content="二手遊戲片價格比較">
+    <meta property="twitter:description" content="一站式比較多個平台的二手遊戲價格">
+    <meta property="twitter:image" content="#">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>🎮 二手遊戲片價格比較</h1>
-            <p>搜尋旋轉拍賣、露天拍賣等平台的最佳價格</p>
+            <p>智慧搜尋多個平台，找到最划算的遊戲價格</p>
         </header>
         
         <main>
             <div class="search-section">
                 <div class="search-form">
-                    <input type="text" id="gameInput" placeholder="輸入遊戲名稱..." />
-                    <button id="searchBtn">🔍 搜尋</button>
+                    <input 
+                        type="text" 
+                        id="gameInput" 
+                        placeholder="輸入遊戲名稱，例如：薩爾達傳說、寶可夢..." 
+                        autocomplete="off"
+                        maxlength="100"
+                    />
+                    <button id="searchBtn" type="button">🔍 搜尋</button>
                 </div>
                 
                 <div class="platform-tags">
-                    <span class="tag">Nintendo Switch</span>
-                    <span class="tag">PlayStation 5</span>
-                    <span class="tag">PlayStation 4</span>
-                    <span class="tag">Xbox Series X/S</span>
+                    <span class="tag">🎮 Nintendo Switch</span>
+                    <span class="tag">🎯 PlayStation 5</span>
+                    <span class="tag">🎪 PlayStation 4</span>
+                    <span class="tag">🎲 Xbox Series X/S</span>
+                    <span class="tag">💻 PC遊戲</span>
+                </div>
+                
+                <div class="search-tips" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px; font-size: 0.9rem; color: #666;">
+                    <strong>搜尋小提示：</strong>
+                    <ul style="margin: 10px 0 0 20px;">
+                        <li>使用遊戲的完整中文或英文名稱</li>
+                        <li>可以嘗試遊戲的簡稱，如「薩爾達」、「寶可夢」</li>
+                        <li>搜尋可能需要30-60秒，請耐心等候</li>
+                    </ul>
                 </div>
             </div>
             
             <div id="loading" class="loading hidden">
                 <div class="spinner"></div>
-                <p>正在搜尋中...</p>
+                <p>正在搜尋各大平台中...</p>
+                <div style="margin-top: 15px; font-size: 0.9rem; color: #888;">
+                    這可能需要一些時間，請耐心等候
+                </div>
             </div>
             
             <div id="results" class="results"></div>
+            
+            <!-- 搜尋建議區域 -->
+            <div id="suggestions" class="suggestions hidden" style="margin-top: 30px;">
+                <div style="background: white; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom: 20px; color: #333;">熱門遊戲搜尋</h3>
+                    <div class="popular-games" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <!-- 這些將由JavaScript動態填充 -->
+                    </div>
+                </div>
+            </div>
         </main>
+        
+        <footer style="text-align: center; margin-top: 50px; padding: 30px; color: white; opacity: 0.8;">
+            <p>&copy; 2025 二手遊戲片價格比較工具</p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">
+                資料來源：旋轉拍賣、蝦皮購物、露天拍賣、PChome 24h 等平台
+            </p>
+            <div style="margin-top: 20px; font-size: 0.8rem;">
+                <a href="/health" style="color: white; opacity: 0.7; text-decoration: none;">系統狀態</a>
+                <span style="margin: 0 10px;">|</span>
+                <span>建議使用 Chrome、Firefox、Safari 瀏覽器</span>
+            </div>
+        </footer>
     </div>
     
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+    
+    <!-- 簡單的錯誤追蹤 -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('頁面錯誤:', e.error);
+        });
+        
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('未處理的 Promise 錯誤:', e.reason);
+        });
+    </script>
 </body>
 </html>
